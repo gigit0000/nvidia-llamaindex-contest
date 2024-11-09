@@ -102,13 +102,12 @@ def main():
                     initialize_agent_settings(name, st.session_state.org_exam_name[0]) 
                     st.success("Information saved! Moving to the next page...")  
                     st.session_state.page = "llm_communication"
+                    st.rerun()
                 except:
-                    st.error("Kindly fill correct organization and exam name")
-
-                 
+                    st.error("Kindly fill correct organization and exam name")        
             else:
                 st.error("Kindly complete all required fields")
-            st.rerun()
+        
             
           
     if st.session_state.page == "llm_communication":
