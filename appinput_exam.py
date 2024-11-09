@@ -105,23 +105,24 @@ def main():
                 except:
                     st.error("Kindly fill correct organization and exam name")
 
-                st.rerun()  
+                 
             else:
                 st.error("Kindly complete all required fields")
-     
-    #임시로 막음            
+            st.rerun()
+            
+          
     if st.session_state.page == "llm_communication":
         col1, col2 = st.columns([1, 1])
         
         with col1:
-            # instructor table에 image path 추가
+
             if 'image_path' in st.session_state:
                 image = Image.open(st.session_state.image_path)
                 st.image(image, use_column_width=True)
 
             if 'org_exam_name' not in st.session_state or st.session_state.org_exam_name is None:
                 st.session_state.org_exam_name = [""]
-            # 기관명과 시험명을 불러온다
+
             st.title(st.session_state.org_exam_name[0].replace("_", " ").title())
            
             data = get_data_from_db(f'SELECT id, questions FROM "{st.session_state.org_exam_name[0]}"')
