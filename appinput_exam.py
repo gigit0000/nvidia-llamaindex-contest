@@ -98,18 +98,16 @@ def main():
                     st.session_state.org_exam_name = get_org_exam_name(name,organization, exam_name)
                     if st.session_state.org_exam_name[0] == 'Invalid':
                         st.error("Kindly fill correct organization and exam name")
-                  
-                    initialize_agent_settings(name, st.session_state.org_exam_name[0]) 
-                    st.success("Information saved! Moving to the next page...")  
-                    st.session_state.page = "llm_communication"
-                    st.rerun()
+                    else:
+                        initialize_agent_settings(name, st.session_state.org_exam_name[0]) 
+                        st.session_state.page = "llm_communication"
+                        st.success("Information saved! Moving to the next page...")                                               
                 except:
-                    st.error("Kindly fill correct organization and exam name")        
+                    st.error("Kindly fill correct organization and exam name")   
             else:
                 st.error("Kindly complete all required fields")
-        
-            
-          
+
+
     if st.session_state.page == "llm_communication":
         col1, col2 = st.columns([1, 1])
         
