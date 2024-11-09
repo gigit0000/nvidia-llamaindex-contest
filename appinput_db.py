@@ -112,112 +112,111 @@ def main():
                 #save_user_info(name, email, organization, exam_name)
                 insert_instr(db_table, name, email, organization, exam_name, st.session_state.image_path)
 
-
                 st.session_state.page = "llm_communication"
                 st.success("Information saved! Moving to the next page...")
                 st.session_state.exam_info = get_exam_name()
                 initialize_agent_settings(st.session_state.exam_info['name'])
-                #st.rerun()  #임시로 코멘트 처리
+                st.rerun()  #temp block
             else:
                 st.error("Kindly complete all required fields")
      
-    #임시로 막음            
-    #if st.session_state.page == "llm_communication":
-    col1, col2 = st.columns([1, 2])
-    
-    with col1:
-        st.markdown(f"## {st.session_state.organization}")
-        st.markdown(f"### {st.session_state.exam_name}")
-        if 'image_path' in st.session_state:
-            image = Image.open(st.session_state.image_path)
-            st.image(image, use_column_width=True)
+    #temp block            
+    if st.session_state.page == "llm_communication":
+        col1, col2 = st.columns([1, 2])
         
-        input_method = st.radio("Choose input method:", ("Upload Files", "Enter Directory Path"))
-        
-        if input_method == "Upload Files":
-            uploaded_files = st.file_uploader("Drag and drop files here", accept_multiple_files=True)
-            if uploaded_files and st.button("Process Files"):
-                with st.spinner("Processing files..."):
-                    documents = load_multimodal_data(uploaded_files)
-                    logger.debug(f"multimodal data READ: {documents}")
-                    st.session_state['index'] = create_index(documents)
-                    logger.debug(f"index CREATED: {st.session_state['index']}")
-                    st.session_state['history'] = []
-                    st.success("Files processed and index created!")
-        else:
-            directory_path = st.text_input("Enter directory path:")
-            if directory_path and st.button("Process Directory"):
-                if os.path.isdir(directory_path):
-                    with st.spinner("Processing directory..."):
-                        documents = load_data_from_directory(directory_path)
+        with col1:
+            st.markdown(f"## {st.session_state.organization}")
+            st.markdown(f"### {st.session_state.exam_name}")
+            if 'image_path' in st.session_state:
+                image = Image.open(st.session_state.image_path)
+                st.image(image, use_column_width=True)
+            
+            input_method = st.radio("Choose input method:", ("Upload Files", "Enter Directory Path"))
+            
+            if input_method == "Upload Files":
+                uploaded_files = st.file_uploader("Drag and drop files here", accept_multiple_files=True)
+                if uploaded_files and st.button("Process Files"):
+                    with st.spinner("Processing files..."):
+                        documents = load_multimodal_data(uploaded_files)
+                        logger.debug(f"multimodal data READ: {documents}")
                         st.session_state['index'] = create_index(documents)
+                        logger.debug(f"index CREATED: {st.session_state['index']}")
                         st.session_state['history'] = []
-                        st.success("Directory processed and index created!")
-                else:
-                    st.error("Invalid directory path. Please enter a valid path.")
-    
-    with col2:
-        st.markdown("")
-        st.markdown("""
-                    ### Turn your documents into smart questions!
-                    First, upload your documents to the left pane. Next, let's discuss the types of questions you'd like and the preferred answer formats. As we chat, Exam Sage will create questions and answers tailored to your needs.
-                    
-                    Ready? Let's get started!
-                    Everything is done, please click **"Finalize"** button to save the exam.
-                    """)
-        if 'index' in st.session_state:
-            st.markdown("### Chat")
-            if 'history' not in st.session_state:
-                st.session_state['history'] = []
-            
-            query_engine = st.session_state['index'].as_query_engine(similarity_top_k=20, streaming=True)
-            logger.debug("as_query_engine CALLED")
-            
-            user_input = st.chat_input("Enter your query:")
-
-            # Display chat messages
-            chat_container = st.container()
-            with chat_container:
-                for message in st.session_state['history']:
-                    with st.chat_message(message["role"]):
-                        st.markdown(message["content"])
-
-            if user_input:
-                with st.chat_message("user"):
-                    st.markdown(user_input)
-                st.session_state['history'].append({"role": "user", "content": user_input})
-                logger.info("user input appended")
+                        st.success("Files processed and index created!")
+            else:
+                directory_path = st.text_input("Enter directory path:")
+                if directory_path and st.button("Process Directory"):
+                    if os.path.isdir(directory_path):
+                        with st.spinner("Processing directory..."):
+                            documents = load_data_from_directory(directory_path)
+                            st.session_state['index'] = create_index(documents)
+                            st.session_state['history'] = []
+                            st.success("Directory processed and index created!")
+                    else:
+                        st.error("Invalid directory path. Please enter a valid path.")
+        
+        with col2:
+            st.markdown("")
+            st.markdown("""
+                        ### Turn your documents into smart questions!
+                        First, upload your documents to the left pane. Next, let's discuss the types of questions you'd like and the preferred answer formats. As we chat, Exam Sage will create questions and answers tailored to your needs.
+                        
+                        Ready? Let's get started!
+                        Everything is done, please click **"Finalize"** button to save the exam.
+                        """)
+            if 'index' in st.session_state:
+                st.markdown("### Chat")
+                if 'history' not in st.session_state:
+                    st.session_state['history'] = []
                 
-                with st.chat_message("assistant"):
-                    message_placeholder = st.empty()
-                    full_response = ""
-                    conversation_history = "\n".join(
-                        [f"{entry['role'].capitalize()}: {entry['content']}" for entry in st.session_state['history']]
-                        )
-                    query_with_context = f"{conversation_history}\nUser: {user_input}"
-                    
-                    response = query_engine.query(query_with_context)
-                    logger.debug(f"received response이건 repr(response): {repr(response)}")
-
-                    for token in response.response_gen:
-                        full_response += token
-                        message_placeholder.markdown(full_response + "▌")
-                    logger.debug(f"Full_Response: {full_response}")
-                    message_placeholder.markdown(full_response)
-                st.session_state['history'].append({"role": "assistant", "content": full_response})
-                logger.debug(f"Session History: {st.session_state['history']}")
+                query_engine = st.session_state['index'].as_query_engine(similarity_top_k=20, streaming=True)
+                logger.debug("as_query_engine CALLED")
                 
-            if st.button("Finalize"):
-                with st.spinner("Saving the exam..."):
-                    table_name = insert_questions(conversation_history=st.session_state['history'])
-                    data = get_data_from_db(f'SELECT * FROM "{table_name}"')
-                    st.dataframe(data)
-                    st.success("Exam Saved")
+                user_input = st.chat_input("Enter your query:")
 
-            # Add a clear button
-            if st.button("Clear Chat"):
-                st.session_state['history'] = []
-                #st.rerun() #얘는 이걸 왜 넣은 거야?
+                # Display chat messages
+                chat_container = st.container()
+                with chat_container:
+                    for message in st.session_state['history']:
+                        with st.chat_message(message["role"]):
+                            st.markdown(message["content"])
+
+                if user_input:
+                    with st.chat_message("user"):
+                        st.markdown(user_input)
+                    st.session_state['history'].append({"role": "user", "content": user_input})
+                    logger.info("user input appended")
+                    
+                    with st.chat_message("assistant"):
+                        message_placeholder = st.empty()
+                        full_response = ""
+                        conversation_history = "\n".join(
+                            [f"{entry['role'].capitalize()}: {entry['content']}" for entry in st.session_state['history']]
+                            )
+                        query_with_context = f"{conversation_history}\nUser: {user_input}"
+                        
+                        response = query_engine.query(query_with_context)
+                        logger.debug(f"received response repr(response): {repr(response)}")
+
+                        for token in response.response_gen:
+                            full_response += token
+                            message_placeholder.markdown(full_response + "▌")
+                        logger.debug(f"Full_Response: {full_response}")
+                        message_placeholder.markdown(full_response)
+                    st.session_state['history'].append({"role": "assistant", "content": full_response})
+                    logger.debug(f"Session History: {st.session_state['history']}")
+                    
+                if st.button("Finalize"):
+                    with st.spinner("Saving the exam..."):
+                        table_name = insert_questions(conversation_history=st.session_state['history'])
+                        data = get_data_from_db(f'SELECT * FROM "{table_name}"')
+                        st.dataframe(data)
+                        st.success("Exam Saved")
+
+                # Add a clear button
+                if st.button("Clear Chat"):
+                    st.session_state['history'] = []
+                    st.rerun() #temp block
                  
                  
 if __name__ == "__main__":
