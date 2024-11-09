@@ -66,8 +66,8 @@ Linux (Ubuntu 20.2),
 ## Installation
 ```
 git clone https://github.com/gigit0000/nvidia-llamaindex-contest/
-cd xxx
-pip install -r requirements-pip.txt
+cd nvidia-llamaindex-contest
+pip install -r requirements.txt
 ```
 If SQLite was not installed in your machine,
 ```
