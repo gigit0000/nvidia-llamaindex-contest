@@ -1,0 +1,10 @@
+__pycache__/
+util/__pycache__
+
+OLD/
+idea/
+nemoguard/
+guard.config/
+fix_dep_conflics/
+downloads/
+trash/
