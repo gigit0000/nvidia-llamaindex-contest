@@ -135,6 +135,8 @@ Note that:
 * Tech presentation: [See instagram post](https://www.instagram.com/reel/DCLcjCPtMtz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)
 * Also See this for engagement ([1](assets/nvidia_discord1.PNG), [2](assets/nvidia_discord2.PNG), [3](assets/nvidia_comminication_3.png))
 * X: [twitter](https://x.com/williamgogo00/status/1855520718181794280)
+* Demo [X](https://x.com/williamgogo00/status/1855477493496795492)
+* Demo [Youtube](https://www.youtube.com/watch?v=TNIGRqrm2yo)
 
 
 
