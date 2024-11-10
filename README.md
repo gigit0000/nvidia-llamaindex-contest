@@ -131,7 +131,7 @@ Note that:
 
      
 ## Supporting Materials and Engagement
-
+```nvidia-llamaindex-contest/supporting_materials```
 See this ([1](assets/nvidia_discord1.PNG), [2](assets/nvidia_discord2.PNG), [3](assets/nvidia_comminication_3.png))
 
 
