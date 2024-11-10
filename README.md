@@ -130,7 +130,8 @@ Note that:
 * During the test, however, the reranking model was found to be unstable ([see here](assets/rerankign_Test_seoul2.PNG)). So, I added the teacher's answer to compare both logits and make an estimate. At this stage, it should only be used as an estimate in comparison to the correct answer. But again, it give a good reference point.
 
      
-## Engagement
+## Supporting Materials and Engagement
+
 See this ([1](assets/nvidia_discord1.PNG), [2](assets/nvidia_discord2.PNG), [3](assets/nvidia_comminication_3.png))
 
 
