@@ -132,9 +132,9 @@ Note that:
      
 ## Supporting Materials and Engagement
 * See the materials in ```nvidia-llamaindex-contest/supporting_materials```
-* Tech presentation: [https://www.instagram.com/willgo0000/](https://www.instagram.com/reel/DCLcjCPtMtz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)
+* Tech presentation: [See instagram post](https://www.instagram.com/reel/DCLcjCPtMtz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)
 * Also See this for engagement ([1](assets/nvidia_discord1.PNG), [2](assets/nvidia_discord2.PNG), [3](assets/nvidia_comminication_3.png))
-* X: [X](https://x.com/williamgogo00/status/1855520718181794280)
+* X: [twitter](https://x.com/williamgogo00/status/1855520718181794280)
 
 
 
