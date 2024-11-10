@@ -20,7 +20,7 @@ That’s not all! Exam Sage will act as a TA during the exams and can offer hint
 
 
 # Technologies
-
+ ![](assets/technologies.PNG)
 Exam Sage is built on RAG, an agentic database, LLM, and other underlying technologies.  
 
 * [NVIDIA NIM Microservices](https://build.nvidia.com/explore/discover)  for hub to language models
