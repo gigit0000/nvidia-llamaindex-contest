@@ -109,6 +109,8 @@ Note that:
 #### Methodological Perspective
 * You can create questions based only on the documents you've uploaded, or from Exam Sage's knowledge base. But the best option is let Exam Sage work, which allows you to generate even more creative questions.
 
+* Nvidia embedding model nv-embedqa-mistral-7b-v2 is that with its large 4096 embeeding size, documents are well accurately interpreted and fused with LLM's base knowledge, along with Llamaindex RAG framework. Without this setup, it was hard to achieve the performance of Exam Sage. 
+
 * LlamaIndex is powerful enough to manage the RAG flow as well as handle an agentic database. NLSQLTableQueryEngine can not only query entries but insert entries using natural language, which I guess weren’t even recognized by the team. But I found it works! ([see this](assets/llamaindex_discord.png)).
 
 * In the original version, questions are immediately saved to DB by the DB agent during the chat as the instructor confirms. But due to timeouts in Setup/Run/1) as described in the above, now DB agent inserts questions at the end once Finalize button is clicked.
@@ -138,9 +140,11 @@ Note that:
 * Demo [X](https://x.com/williamgogo00/status/1855477493496795492)
 * Demo [Youtube](https://www.youtube.com/watch?v=TNIGRqrm2yo)
 
-
+# Afterword
+This app is more than just a lab experiment; it’s for practical use across various educational settings, when equipped with security measures such as LAN access control and desktop IP restrictions. While hallucinations couldn’t be entirely eliminated, with incorporating Nemoguardrails and adding a few verification steps to conversations I believe Exam Sage is a valuable education tool for students, trainers as well as teachers, professors, and instructors.
 
 # Next Version To Do
 * Students ID verification process
 * Security modules for DB and DB inserts statements
+* Emailing the exam result to instructors
 
