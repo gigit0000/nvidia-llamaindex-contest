@@ -62,7 +62,7 @@ conda create -n myenv python=3.10.15
 conda activate myenv
 ```
 ## OS
-Linux (Ubuntu 20.2), 
+Linux (Ubuntu 20.04)
 ## Installation
 ```
 git clone https://github.com/gigit0000/nvidia-llamaindex-contest/
