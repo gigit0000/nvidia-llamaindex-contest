@@ -139,6 +139,7 @@ Note that:
 * X: [twitter](https://x.com/williamgogo00/status/1855520718181794280)
 * Demo [X](https://x.com/williamgogo00/status/1855477493496795492)
 * Demo [Youtube](https://www.youtube.com/watch?v=TNIGRqrm2yo)
+* Tech Stact [instagram](https://www.instagram.com/p/DCMmc4Lz18j)
 
 # Afterword
 This app is more than just a lab experiment; it’s for practical use across various educational settings, when equipped with security measures such as LAN access control and desktop IP restrictions. While hallucinations couldn’t be entirely eliminated, with incorporating Nemoguardrails and adding a few verification steps to conversations I believe Exam Sage is a valuable education tool for students, trainers as well as teachers, professors, and instructors.
