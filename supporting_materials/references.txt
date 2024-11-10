@@ -1,0 +1,11 @@
+Part of references
+https://build.nvidia.com/explore/discover
+https://catalog.ngc.nvidia.com/?filters=&orderBy=weightPopularDESC&query=&page=&pageSize=
+https://github.com/NVIDIA/NeMo-Guardrails
+https://github.com/NVIDIA/NeMo-Guardrails/tree/main
+https://developer.nvidia.com/blog/develop-production-grade-text-retrieval-pipelines-for-rag-with-nvidia-nemo-retriever
+https://docs.llamaindex.ai/en/stable/examples/node_postprocessor/NVIDIARerank/
+https://github.com/NVIDIA/GenerativeAIExamples/tree/main/community/llm_video_series/video_2_multimodal-rag
+https://docs.nvidia.com/nim/nemo-retriever/text-reranking/latest/using-reranking.html
+https://github.com/NVIDIA/NeMo-Guardrails/blob/a8720761f392f05934cb9447f10f2dff707bb9f1/docs/user_guides/configuration-guide.md
+https://github.com/NVIDIA/NeMo-Guardrails/blob/a8720761f392f05934cb9447f10f2dff707bb9f1/docs/user_guides/configuration-guide.md
